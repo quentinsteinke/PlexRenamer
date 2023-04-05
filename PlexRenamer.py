@@ -82,14 +82,14 @@ root.title("Plex Renamer")
 style = ttk.Style()
 style.configure('TButton', font=('Helvetica', 10))
 
-frame = ttk.Frame(root, padding=(10, 10))
-frame.pack(fill=tk.BOTH, expand=True)
+top_frame = ttk.Frame(root, padding=(10, 10), borderwidth=2, relief="groove")
+top_frame.pack(fill=tk.BOTH, expand=True)
 
-listbox_frame = ttk.Frame(frame)
+listbox_frame = ttk.Frame(top_frame)
 listbox_frame.grid(row=0, column=0, padx=5, pady=5, sticky=tk.NSEW)
 
-frame.rowconfigure(0, weight=1)
-frame.columnconfigure(0, weight=1)
+top_frame.rowconfigure(0, weight=1)
+top_frame.columnconfigure(0, weight=1)
 
 listbox_files = tk.Listbox(listbox_frame, width=50, selectmode=tk.EXTENDED)
 listbox_files.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
@@ -104,39 +104,49 @@ scrollbar_vertical.pack(side=tk.RIGHT, fill=tk.Y)
 
 listbox_files.config(yscrollcommand=scrollbar_vertical.set)
 
-button_browse = ttk.Button(frame, text="Browse Files", command=browse_files)
-button_browse.grid(row=0, column=1, padx=5, pady=5)
+# Create a frame for the buttons
+buttons_frame = ttk.Frame(top_frame, padding=(10, 10), borderwidth=2, relief="groove")
+buttons_frame.grid(row=0, column=1, padx=5, pady=5, sticky=tk.N)
 
-button_up = ttk.Button(frame, text="Move Up", command=move_elements_up)
-button_up.grid(row=0, column=2, padx=5, pady=5)
+# Add the move up button to the buttons frame
+button_up = ttk.Button(buttons_frame, text="Move Up", command=move_elements_up)
+button_up.pack(side=tk.TOP, padx=5, pady=5)
 
-button_down = ttk.Button(frame, text="Move Down", command=move_elements_down)
-button_down.grid(row=1, column=2, padx=5, pady=5)
+# Add the move down button to the buttons frame
+button_down = ttk.Button(buttons_frame, text="Move Down", command=move_elements_down)
+button_down.pack(side=tk.TOP, padx=5, pady=5)
 
-button_group_special = ttk.Button(frame, text="Group as Special", command=group_as_special)
-button_group_special.grid(row=3, column=2, padx=5, pady=5)
+# Add the group as special button to the buttons frame
+button_group_special = ttk.Button(buttons_frame, text="Group as Special", command=group_as_special)
+button_group_special.pack(side=tk.TOP, padx=5, pady=5)
 
-ttk.Label(frame, text="Show Name:").grid(row=2, column=0, padx=5, pady=5, sticky=tk.W)
+# Create a frame for the entry fields
+entry_frame = ttk.Frame(top_frame, padding=(10, 10), borderwidth=2, relief="groove")
+entry_frame.grid(row=0, column=2, padx=5, pady=5, sticky=tk.N)
 
-entry_show_name = ttk.Entry(frame, width=50)
-entry_show_name.grid(row=3, column=0, padx=5, pady=5)
+# Add the show name label and entry to the entry frame
+ttk.Label(entry_frame, text="Show Name:").pack(side=tk.TOP, padx=5, pady=5, anchor=tk.W)
+entry_show_name = ttk.Entry(entry_frame, width=50)
+entry_show_name.pack(side=tk.TOP, padx=5, pady=5, anchor=tk.W)
 
-ttk.Label(frame, text="Season Number:").grid(row=4, column=0, padx=5, pady=5, sticky=tk.W)
+# Add the season number label and entry to the entry frame
+ttk.Label(entry_frame, text="Season Number:").pack(side=tk.TOP, padx=5, pady=5, anchor=tk.W)
+entry_season_number = ttk.Entry(entry_frame, width=10)
+entry_season_number.pack(side=tk.TOP, padx=5, pady=5, anchor=tk.W)
 
-entry_season_number = ttk.Entry(frame, width=10)
-entry_season_number.grid(row=5, column=0, padx=5, pady=5, sticky=tk.W)
+# Add the episode start number label and entry to the entry frame
+ttk.Label(entry_frame, text="Episode Start Number:").pack(side=tk.TOP, padx=5, pady=5, anchor=tk.W)
+entry_episode_start_number = ttk.Entry(entry_frame, width=10)
+entry_episode_start_number.pack(side=tk.TOP, padx=5, pady=5, anchor=tk.W)
 
-ttk.Label(frame, text="Episode Start Number:").grid(row=6, column=0, padx=5, pady=5, sticky=tk.W)
+# Add the special start number label and entry to the entry frame
+ttk.Label(entry_frame, text="Special Start Number:").pack(side=tk.TOP, padx=5, pady=5, anchor=tk.W)
+entry_special_start_number = ttk.Entry(entry_frame, width=10)
+entry_special_start_number.pack(side=tk.TOP, padx=5, pady=5, anchor=tk.W)
 
-entry_episode_start_number = ttk.Entry(frame, width=10)
-entry_episode_start_number.grid(row=7, column=0, padx=5, pady=5, sticky=tk.W)
+# Add the rename files button to the frame
+button_rename = ttk.Button(entry_frame, text="Rename Files", command=rename_files)
+button_rename.pack(side=tk.TOP, padx=5, pady=5, anchor=tk.W)
 
-ttk.Label(frame, text="Special Start Number:").grid(row=8, column=0, padx=5, pady=5, sticky=tk.W)
-
-entry_special_start_number = ttk.Entry(frame, width=10)
-entry_special_start_number.grid(row=9, column=0, padx=5, pady=5, sticky=tk.W)
-
-button_rename = ttk.Button(frame, text="Rename Files", command=rename_files)
-button_rename.grid(row=10, column=0, padx=5, sticky=tk.W)
-
+# Start the main loop
 root.mainloop()

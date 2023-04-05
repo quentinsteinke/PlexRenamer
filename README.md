@@ -1,1 +1,3 @@
-"# PlexRenamer" 
+This is a Python script that creates a graphical user interface (GUI) using the tkinter library. The script is a file renaming tool called "Plex Renamer" that allows you to select MKV files from your computer and rename them based on the input fields provided. The GUI includes a list box to display the selected files, buttons to move the selected files up and down in the list, a button to group selected files as "special", and input fields to enter the show name, season number, episode start number, and special start number.
+
+The renaming process is triggered by clicking the "Rename Files" button, which renames the files based on the input provided and prints a success message to the console. The script also handles exceptions such as when no files are selected, no season number is provided, or when a file cannot be renamed. Overall, this script provides a convenient way to batch rename files in a user-friendly way.
