@@ -1,5 +1,6 @@
 import os
 import tkinter as tk
+from tkinter import ttk
 from tkinter import filedialog
 
 def browse_files():
@@ -77,12 +78,14 @@ def rename_files():
 
 
 root = tk.Tk()
-root.title("MKV Renamer")
+root.title("Plex Renamer")
+style = ttk.Style()
+style.configure('TButton', font=('Helvetica', 10))
 
-frame = tk.Frame(root, padx=10, pady=10)
+frame = ttk.Frame(root, padding=(10, 10))
 frame.pack(fill=tk.BOTH, expand=True)
 
-listbox_frame = tk.Frame(frame)
+listbox_frame = ttk.Frame(frame)
 listbox_frame.grid(row=0, column=0, padx=5, pady=5, sticky=tk.NSEW)
 
 frame.rowconfigure(0, weight=1)
@@ -91,49 +94,49 @@ frame.columnconfigure(0, weight=1)
 listbox_files = tk.Listbox(listbox_frame, width=50, selectmode=tk.EXTENDED)
 listbox_files.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
-scrollbar_horizontal = tk.Scrollbar(listbox_frame, orient=tk.HORIZONTAL, command=listbox_files.xview)
+scrollbar_horizontal = ttk.Scrollbar(listbox_frame, orient=tk.HORIZONTAL, command=listbox_files.xview)
 scrollbar_horizontal.pack(side=tk.BOTTOM, fill=tk.X)
 
 listbox_files.config(xscrollcommand=scrollbar_horizontal.set)
 
-scrollbar_vertical = tk.Scrollbar(listbox_frame, orient=tk.VERTICAL, command=listbox_files.yview)
+scrollbar_vertical = ttk.Scrollbar(listbox_frame, orient=tk.VERTICAL, command=listbox_files.yview)
 scrollbar_vertical.pack(side=tk.RIGHT, fill=tk.Y)
 
 listbox_files.config(yscrollcommand=scrollbar_vertical.set)
 
-button_browse = tk.Button(frame, text="Browse Files", command=browse_files)
+button_browse = ttk.Button(frame, text="Browse Files", command=browse_files)
 button_browse.grid(row=0, column=1, padx=5, pady=5)
 
-button_up = tk.Button(frame, text="Move Up", command=move_elements_up)
+button_up = ttk.Button(frame, text="Move Up", command=move_elements_up)
 button_up.grid(row=0, column=2, padx=5, pady=5)
 
-button_down = tk.Button(frame, text="Move Down", command=move_elements_down)
+button_down = ttk.Button(frame, text="Move Down", command=move_elements_down)
 button_down.grid(row=1, column=2, padx=5, pady=5)
 
-button_group_special = tk.Button(frame, text="Group as Special", command=group_as_special)
+button_group_special = ttk.Button(frame, text="Group as Special", command=group_as_special)
 button_group_special.grid(row=3, column=2, padx=5, pady=5)
 
-tk.Label(frame, text="Show Name:").grid(row=2, column=0, padx=5, pady=5, sticky=tk.W)
+ttk.Label(frame, text="Show Name:").grid(row=2, column=0, padx=5, pady=5, sticky=tk.W)
 
-entry_show_name = tk.Entry(frame, width=50)
+entry_show_name = ttk.Entry(frame, width=50)
 entry_show_name.grid(row=3, column=0, padx=5, pady=5)
 
-tk.Label(frame, text="Season Number:").grid(row=4, column=0, padx=5, pady=5, sticky=tk.W)
+ttk.Label(frame, text="Season Number:").grid(row=4, column=0, padx=5, pady=5, sticky=tk.W)
 
-entry_season_number = tk.Entry(frame, width=10)
+entry_season_number = ttk.Entry(frame, width=10)
 entry_season_number.grid(row=5, column=0, padx=5, pady=5, sticky=tk.W)
 
-tk.Label(frame, text="Episode Start Number:").grid(row=6, column=0, padx=5, pady=5, sticky=tk.W)
+ttk.Label(frame, text="Episode Start Number:").grid(row=6, column=0, padx=5, pady=5, sticky=tk.W)
 
-entry_episode_start_number = tk.Entry(frame, width=10)
+entry_episode_start_number = ttk.Entry(frame, width=10)
 entry_episode_start_number.grid(row=7, column=0, padx=5, pady=5, sticky=tk.W)
 
-tk.Label(frame, text="Special Start Number:").grid(row=8, column=0, padx=5, pady=5, sticky=tk.W)
+ttk.Label(frame, text="Special Start Number:").grid(row=8, column=0, padx=5, pady=5, sticky=tk.W)
 
-entry_special_start_number = tk.Entry(frame, width=10)
+entry_special_start_number = ttk.Entry(frame, width=10)
 entry_special_start_number.grid(row=9, column=0, padx=5, pady=5, sticky=tk.W)
 
-button_rename = tk.Button(frame, text="Rename Files", command=rename_files)
-button_rename.grid(row=10, column=0, padx=5, pady=5, sticky=tk.W)
+button_rename = ttk.Button(frame, text="Rename Files", command=rename_files)
+button_rename.grid(row=10, column=0, padx=5, sticky=tk.W)
 
 root.mainloop()
