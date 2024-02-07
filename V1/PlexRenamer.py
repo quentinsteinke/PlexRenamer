@@ -108,6 +108,9 @@ listbox_files.config(yscrollcommand=scrollbar_vertical.set)
 buttons_frame = ttk.Frame(top_frame, padding=(10, 10), borderwidth=2, relief="groove")
 buttons_frame.grid(row=0, column=1, padx=5, pady=5, sticky=tk.N)
 
+button_up = ttk.Button(buttons_frame, text="Browse Files", command=browse_files)
+button_up.pack(side=tk.TOP, padx=5, pady=5)
+
 # Add the move up button to the buttons frame
 button_up = ttk.Button(buttons_frame, text="Move Up", command=move_elements_up)
 button_up.pack(side=tk.TOP, padx=5, pady=5)
