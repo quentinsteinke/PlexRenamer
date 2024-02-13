@@ -62,8 +62,13 @@ def getFilesInFolder(folder):
     for item in os.listdir(folder):
         mkvFiles.append(os.path.join(folder, item))
 
-    if mkvFiles is not None:
+    mkvFiles.sort(key=os.path.getctime)
+
+    if mkvFiles:
         return mkvFiles
+    else:
+        print("Folder is empty")
+        return None
 
 
 def makeEpisodeName(showName, episodeYear, seasonNumber, episodeNumber, episodeTitle):
@@ -74,7 +79,7 @@ def makeEpisodeName(showName, episodeYear, seasonNumber, episodeNumber, episodeT
 def renameFile(old_path, new_path):
     try:
         os.rename(old_path, new_path)
-        print(f"Renamed {old_path} to {new_path}")
+        print(f"Renamed {old_path} to /n {new_path}")
     except OSError as e:
         print(f"Error renaming {old_path}: {e}")
 
@@ -86,7 +91,7 @@ def main():
         print(x, "|", item["name"], item["year"])
 
     # Selecting Show
-    showSelection = int(input())
+    showSelection = int(input("What show are you looking for?: "))
     showid = searchData[showSelection]["id"]
     showName = searchData[showSelection]["name"]
 
