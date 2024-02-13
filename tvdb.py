@@ -1,10 +1,13 @@
 import tvdb_v4_official
+from dotenv import load_dotenv
 import json
 import sys
 import os
 
 
-apikey = "202a4721-032a-4ddd-b885-3a6d1aa6d5f8"
+load_dotenv()
+apikey = os.getenv("TVDB_API_KEY")
+
 tvdb = tvdb_v4_official.TVDB(apikey)
 
 searchTerm = sys.argv[1]
